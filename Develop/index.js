@@ -14,7 +14,7 @@ function makeEmployee() {
       choices: ["Manager", "Engineer", "Intern", "All done adding"],
     },
   ]).then((data) => {
-    //   if()
+      // if()
   })
 
   //manager
