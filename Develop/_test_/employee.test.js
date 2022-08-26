@@ -31,20 +31,23 @@ describe("Employee", () => {
     expect(newEmployee.getName()).toBe(nameInput); 
   });
   // getId()
-  it("should get the employee ID from getID()", () => {
+  it("should get the employee ID from getId()", () => {
     const idInput = 1234;
-    const newEmployee = new Employee(idInput);
-    expect(newEmployee.getID()).toBe(idInput); 
+    const newEmployee = new Employee("Sally", idInput);
+    expect(newEmployee.getId()).toBe(idInput); 
   });
   // getEmail()
   it("should get the employee email from getEmail()", () => {
     const emailInput = "employee@email.com";
-    const newEmployee = new Employee(emailInput);
+    const newEmployee = new Employee("Sally", 1234, emailInput);
     expect(newEmployee.getEmail()).toBe(emailInput); 
   });
+  // getRole()—returns 'Employee'
+  it("should return the employee", () => {
+    const employeeRole = "Employee";
+    const newEmployee = new Employee("Sally", 1234, "employee@email.com");
+    expect(newEmployee.getRole()).toBe(employeeRole);
+  })
 });
 
 
-
-
-// getRole()—returns 'Employee'
