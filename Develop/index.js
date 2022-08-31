@@ -65,6 +65,7 @@ function makeEmployee() {
         const id = data.id;
         const email = data.email;
         const officeNumber = data.officeNumber;
+        const role = data.role;
         const newManager = new Manager(name, id, email, officeNumber);
         teamMembers.push(newManager);
         makeEmployee();
@@ -141,33 +142,69 @@ function makeEmployee() {
 }
 
 function createHTML() {
-  let html = "";
-  const startHTML = `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport"content="width=device-width, initial-scale=1.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><title>Team Member Profiles</title></head><body><h1>Team Member Profiles</h1>`;
+  let html = [];
+  const startHTML = `
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport"content="width=device-width, initial-scale=1.0">
+      <title>Team Member Profiles</title>
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Sarabun&display=swap" rel="stylesheet">  
+      <style>
+       
+        body {
+          background-color:	#C7DDCC; 
+          color: #16123F;
+          font-family: 'Sarabun', sans-serif;
+        } 
+        .container {
+          display:flex;
+          justify-content: space-evenly;
+          flex-wrap: wrap;
+        } 
+        .card {
+          background-color: #16123F; 
+          margin: 20px;
+          color: white; 
+          display: flex; 
+          padding: 10px;
+          width: 30%;
+          border: 5px solid #40E0D0;
+        }
+      </style>
+    </head>
+  <body>
+    <h1>Team Member Profiles</h1>`;
 
   html += startHTML;
 
   for (let index = 0; index < teamMembers.length; index++) {
-    let teamCard = `<div class="card text-white bg-info mb-3" style="max-width: 18rem;"><div class="card-header">${teamMembers[index].title}</div><div class="card-body"><h5 class="card-title">${teamMembers[index].name}</h5><h2 class="id">${teamMembers[index].id}</h2><h2 class="email">${teamMembers[index].email}</h2>`;
+    let teamCard = `<div class="container"><div class="card"><div class="card-header">${teamMembers[index].role}</div><div class="card-body"><h2 class="card-title">${teamMembers[index].name}</h2><h3 class="id">ID: ${teamMembers[index].id}</h3><h3 class="email">Email: ${teamMembers[index].email}</h3>`;
 
     if (teamMembers[index].officeNumber) {
-      teamCard += `<h2>${teamMembers[index].officeNumber}</h2>`;
+      teamCard += `<h3>Office Number: ${teamMembers[index].officeNumber}</h3>`;
     }
     if (teamMembers[index].github) {
-      teamCard += `<h2>${teamMembers[index].github}</h2>`;
+      teamCard += `<h3>Github: ${teamMembers[index].github}</h3>`;
     }
     if (teamMembers[index].school) {
-      teamCard += `<h2>${teamMembers[index].school}</h2>`;
+      teamCard += `<h3>School: ${teamMembers[index].school}</h3>`;
     }
 
-    teamCard += `</div></div>`;
+    teamCard += `</div></div></div>`;
 
     html += teamCard;
   }
   const endHTML = `</div></body></html>`;
 
   html += endHTML;
-  console.log(htmlAry);
-  fs.writeFile("./dist/index.html", JSON.stringify(html), (err) => {
+  
+  //JSON.stringify
+  fs.writeFile("./dist/index.html", (html), (err) => {
     err ? console.error(err) : console.log("Success!");
   });
 }
