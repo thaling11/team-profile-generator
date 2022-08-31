@@ -27,7 +27,7 @@ SO THAT I have quick access to their emails and GitHub profiles
 
 The following image shows a mock-up of the generated HTML’s appearance and functionality:
 
-![Screenshot](../Assets/images/teamprofiles.jpg)
+![Screenshot](./Assets/images/teamprofiles.jpg)
 
 
 ## Video Walkthrough
